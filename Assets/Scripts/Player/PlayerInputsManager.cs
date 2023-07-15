@@ -32,7 +32,6 @@ public class PlayerInputsManager : MonoBehaviour
 
     void Move()
     {
-        //Vector3 movementDirection = Vector3.ProjectOnPlane(cam.transform.TransformDirection(new Vector3(inputMovement.x, 0, inputMovement.y)), playerRigidbody.transform.up).normalized;
         Vector3 playerVelocity = new Vector3(inputMovement.x * speed, playerRigidbody.velocity.y, inputMovement.y * speed);
         playerRigidbody.velocity = transform.TransformDirection(playerVelocity);
     }
@@ -46,6 +45,16 @@ public class PlayerInputsManager : MonoBehaviour
     {
         if (IsGrounded()){
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void OnCast(InputValue value)
+    {
+        bool cast = value.Get<float>() == 1;
+        if (cast){
+            GetComponentInChildren<MagicCaster>().Cast();
+        }else{
+            GetComponentInChildren<MagicCaster>().UnCast();
         }
     }
 }

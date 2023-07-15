@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Magic : MonoBehaviour
@@ -13,4 +11,5 @@ public abstract class Magic : MonoBehaviour
     }
 
     public abstract float GetMana();
+    public abstract MagicType GetMagicType();
 }

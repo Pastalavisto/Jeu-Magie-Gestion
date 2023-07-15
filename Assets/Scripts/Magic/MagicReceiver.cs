@@ -27,7 +27,7 @@ public class MagicReceiver : MonoBehaviour
             manaNumber = 0;
             //Trigger Magic
         }
-        Debug.Log("Magic Triggered of "+ magic.GetType().Name + " on " + gameObject.name + " with manaNumber " + manaNumber + " and manaMax " + manaMax + "");
+        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetMana() + " and mana number " + manaNumber + " and mana max " + manaMax + "");
 
     }
 }
