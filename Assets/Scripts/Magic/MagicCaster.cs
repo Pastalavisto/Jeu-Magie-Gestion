@@ -8,7 +8,6 @@ public class MagicCaster : MonoBehaviour
     
     public void Cast()
     {
-        Debug.Log("Cast");
         Instantiate(magicPrefab, transform);
     }
 
