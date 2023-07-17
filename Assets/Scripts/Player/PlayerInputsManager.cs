@@ -12,12 +12,15 @@ public class PlayerInputsManager : MonoBehaviour
     [SerializeField]
     private float jumpForce = 5f;
     private Vector2 inputMovement;
-
+    private Mana mana;
+    private MagicCaster magicCaster;
     // Start is called before the first frame update
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
+        mana = GetComponent<Mana>();
+        magicCaster = GetComponentInChildren<MagicCaster>();
     }
 
     // Update is called once per frame
@@ -52,9 +55,9 @@ public class PlayerInputsManager : MonoBehaviour
     {
         bool cast = value.Get<float>() == 1;
         if (cast){
-            GetComponentInChildren<MagicCaster>().Cast();
+            magicCaster.Cast();
         }else{
-            GetComponentInChildren<MagicCaster>().UnCast();
+            magicCaster.UnCast();
         }
     }
 }

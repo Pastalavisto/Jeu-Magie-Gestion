@@ -7,27 +7,16 @@ public class MagicReceiver : MonoBehaviour
     private float manaNumber = 0;
     [SerializeField]
     private float manaMax = 100;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void TriggerMagic(Magic magic)
     {
-        manaNumber += magic.GetMana();
+        manaNumber += magic.GetManaCost();
         if (manaNumber >= manaMax)
         {
             manaNumber = 0;
             //Trigger Magic
         }
-        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetMana() + " and mana number " + manaNumber + " and mana max " + manaMax + "");
+        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetManaCost() + " and mana number " + manaNumber + " and mana max " + manaMax + "");
 
     }
 }

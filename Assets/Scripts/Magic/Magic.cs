@@ -25,7 +25,7 @@ public abstract class Magic : MonoBehaviour
         }
     }
 
-    public abstract float GetMana();
+    public abstract float GetManaCost();
     public abstract MagicType GetMagicType();
     public abstract GameObject GetMagicParticlePrefab();
 }

@@ -12,7 +12,7 @@ public class FireBeam : FireMagic
         return magicParticlePrefab;
     }
 
-    public override float GetMana()
+    public override float GetManaCost()
     {
         return mana;
     }
