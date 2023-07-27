@@ -577,10 +577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf986554fa9a784fb1b83838fd7cb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mana: 100
+  _mana: 50
   _maxMana: 100
-  _manaRegen: 0
-  _manaRegenDelay: 10
+  _manaRegen: 5
+  _manaRegenDelay: 30
 --- !u!1 &135216824
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicPrefab: {fileID: 5248316923082847851, guid: e3e5edd5f9b2a944581a45110372e9af, type: 3}
   mana: {fileID: 86795774}
+  _delayBetweenManaConsume: 20
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

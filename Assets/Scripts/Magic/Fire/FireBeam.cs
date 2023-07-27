@@ -3,7 +3,7 @@ using UnityEngine;
 public class FireBeam : FireMagic
 {
     [SerializeField]
-    private float mana = 10;
+    private float mana = 1;
     [SerializeField]
     private GameObject magicParticlePrefab;
 

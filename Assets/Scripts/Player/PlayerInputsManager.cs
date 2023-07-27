@@ -56,8 +56,10 @@ public class PlayerInputsManager : MonoBehaviour
         bool cast = value.Get<float>() == 1;
         if (cast){
             magicCaster.Cast();
+            magicCaster.WantToCast(true);
         }else{
             magicCaster.UnCast();
+            magicCaster.WantToCast(false);
         }
     }
 }

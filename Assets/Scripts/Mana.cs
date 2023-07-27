@@ -14,7 +14,12 @@ public class Mana : MonoBehaviour
     private float _manaRegenDelay = 0;
     private float _manaRegenDelayCounter = 0;
 
-    void Update()
+    void FixedUpdate()
+    {
+        RegenMana();
+    }
+
+    private void RegenMana()
     {
         if (_manaRegenDelayCounter < _manaRegenDelay)
         {
@@ -30,14 +35,14 @@ public class Mana : MonoBehaviour
         }
     }
 
-    public bool CanCast(float manaCost)
+    public void UseMana(float mana)
     {
-        return _mana >= manaCost;
+        _mana -= mana;
     }
 
-    public void Cast(float manaCost)
+    public float GetMana()
     {
-        _mana -= manaCost;
+        return _mana;
     }
 
     public override string ToString()
