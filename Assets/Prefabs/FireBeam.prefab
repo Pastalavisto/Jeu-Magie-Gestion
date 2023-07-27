@@ -4843,5 +4843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8724f3ce7a9fac344be287d2169b92f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  part: {fileID: 0}
   mana: 10
   magicParticlePrefab: {fileID: 7530299918276483367, guid: 43e457884b89292489eeab85456b42ee, type: 3}
+  _delayBetweenManaConsume: 20

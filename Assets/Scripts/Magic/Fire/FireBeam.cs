@@ -3,9 +3,10 @@ using UnityEngine;
 public class FireBeam : FireMagic
 {
     [SerializeField]
-    private float mana = 1;
+    private float mana = 10;
     [SerializeField]
     private GameObject magicParticlePrefab;
+    [SerializeField] private float _delayBetweenManaConsume = 0;
 
     public override GameObject GetMagicParticlePrefab()
     {
@@ -15,5 +16,10 @@ public class FireBeam : FireMagic
     public override float GetManaCost()
     {
         return mana;
+    }
+
+    public override float GetDelayBetweenManaConsume()
+    {
+        return _delayBetweenManaConsume;
     }
 }

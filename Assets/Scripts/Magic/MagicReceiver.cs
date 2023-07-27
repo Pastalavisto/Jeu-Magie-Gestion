@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class MagicReceiver : MonoBehaviour
 {
-    private float manaNumber = 0;
-    [SerializeField]
-    private float manaMax = 100;
-
+    [SerializeField] private Mana _mana;
+    [SerializeField] private GameObject itemPrefab;
+    
     public void TriggerMagic(Magic magic)
     {
-        manaNumber += magic.GetManaCost();
-        if (manaNumber >= manaMax)
+        _mana.AddMana(magic.GetManaCost());
+        if (_mana.GetMana() >= _mana.GetMaxMana())
         {
-            manaNumber = 0;
-            //Trigger Magic
+            _mana.ResetMana();
+            Instantiate(itemPrefab, transform.position, Quaternion.identity);
         }
-        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetManaCost() + " and mana number " + manaNumber + " and mana max " + manaMax + "");
+        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetManaCost() + " and mana number " + _mana.GetMana() + " and mana max " + _mana.GetMaxMana() + "");
 
     }
 }
