@@ -29,4 +29,5 @@ public abstract class Magic : MonoBehaviour
     public abstract MagicType GetMagicType();
     public abstract GameObject GetMagicParticlePrefab();
     public abstract float GetDelayBetweenManaConsume();
+    public abstract float GetPower();
 }

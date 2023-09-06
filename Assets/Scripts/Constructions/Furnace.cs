@@ -28,8 +28,7 @@ public class Furnace : MagicReceiver
         }
         Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetManaCost() + " and mana number " + _mana.GetMana() + " and mana max " + _mana.GetMaxMana() + "");
         _manaBar.SetActive(true);
-        Debug.Log(_mana.GetMana() / _mana.GetMaxMana());
-        _manaBarScript.UpdateManaBar(_mana.GetMana() / _mana.GetMaxMana());
+        _manaBarScript.UpdateManaBar(_mana.GetMana() / _mana.GetMaxMana() * 100);
         _manaBarScript.ResetManaBarTimer();
     }
 }

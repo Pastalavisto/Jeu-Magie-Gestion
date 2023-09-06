@@ -10,9 +10,6 @@ public class MagicCaster : MonoBehaviour
     private bool _isCasting = false;
     private float _delayBetweenManaConsumeCounter = 0;
     private bool _wantToCast = false;
-    [SerializeField] private float _manaRegen = 0;
-    [SerializeField] private float _manaRegenDelay = 0;
-    private float _manaRegenDelayCounter = 0;
 
     public void Start()
     {
@@ -31,7 +28,6 @@ public class MagicCaster : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RegenMana();
         if (_delayBetweenManaConsumeCounter < 0)
         {
             ConsumeMana();
@@ -40,22 +36,6 @@ public class MagicCaster : MonoBehaviour
         else
         {
             _delayBetweenManaConsumeCounter--;
-        }
-    }
-
-    private void RegenMana()
-    {
-        if (_manaRegenDelayCounter < _manaRegenDelay)
-        {
-            _manaRegenDelayCounter++;
-        }
-        else
-        {
-            if (_mana.GetMana() < _mana.GetMaxMana())
-            {
-                _mana.AddMana(_manaRegen);
-                _manaRegenDelayCounter = 0;
-            }
         }
     }
 

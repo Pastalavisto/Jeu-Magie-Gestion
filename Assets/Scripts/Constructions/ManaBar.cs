@@ -10,7 +10,7 @@ public class ManaBar : MonoBehaviour
     [SerializeField] private float _manaBarDuration = 1f;
     private float _manaBarTimer = 0f;
 
-    void Start()
+    void Awake()
     {
         Renderer renderer = GetComponent<Renderer>();
         _material = renderer.material;
@@ -32,7 +32,6 @@ public class ManaBar : MonoBehaviour
 
     public void UpdateManaBar(float manaValue)
     {
-        float mana = _material.GetFloat("_Mana");
         _material.SetFloat("_Mana", manaValue);
     }
 

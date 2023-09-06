@@ -7,6 +7,7 @@ public class FireBeam : FireMagic
     [SerializeField]
     private GameObject magicParticlePrefab;
     [SerializeField] private float _delayBetweenManaConsume = 0;
+    [SerializeField] private float _power = 1;
 
     public override GameObject GetMagicParticlePrefab()
     {
@@ -21,5 +22,10 @@ public class FireBeam : FireMagic
     public override float GetDelayBetweenManaConsume()
     {
         return _delayBetweenManaConsume;
+    }
+
+    public override float GetPower ()
+    {
+        return _power;
     }
 }
