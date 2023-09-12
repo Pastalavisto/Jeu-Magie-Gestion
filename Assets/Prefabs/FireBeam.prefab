@@ -4847,3 +4847,4 @@ MonoBehaviour:
   mana: 1
   magicParticlePrefab: {fileID: 7530299918276483367, guid: 43e457884b89292489eeab85456b42ee, type: 3}
   _delayBetweenManaConsume: 1
+  _power: 5

@@ -58,7 +58,7 @@ public class MagicCaster : MonoBehaviour
         }
     }
 
-    public float getManaToCast()
+    public float GetManaToCast()
     {
         return magicPrefab.GetComponent<Magic>().GetManaCost();
     }

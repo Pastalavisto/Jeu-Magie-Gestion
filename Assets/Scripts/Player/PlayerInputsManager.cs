@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class PlayerInputsManager : MonoBehaviour
 {
-    private Rigidbody playerRigidbody;
-    private Collider playerCollider;
-    [SerializeField]
-    private float speed = 10f;
-    [SerializeField]
-    private float jumpForce = 5f;
-    private Vector2 inputMovement;
-    private Mana mana;
-    private MagicCaster magicCaster;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private UIManager _uIManager;
+    private Rigidbody _playerRigidbody;
+    private Collider _playerCollider;
+    [SerializeField] private float _speed = 10f;
+    [SerializeField] private float _jumpForce = 5f;
+    private Vector2 _inputMovement;
+    private MagicCaster _magicCaster;
+    private PlayerInput _playerInput;
     // Start is called before the first frame update
     void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
-        playerCollider = GetComponent<Collider>();
-        mana = GetComponent<Mana>();
-        magicCaster = GetComponentInChildren<MagicCaster>();
+        _playerInput = GetComponent<PlayerInput>();
+        _playerRigidbody = _player.GetComponent<Rigidbody>();
+        _playerCollider = _player.GetComponent<Collider>();
+        _magicCaster = _player.GetComponentInChildren<MagicCaster>();
     }
 
     // Update is called once per frame
@@ -30,24 +33,24 @@ public class PlayerInputsManager : MonoBehaviour
     }
 
     public bool IsGrounded(){
-        return Physics.Raycast(transform.position, -Vector3.up, playerCollider.bounds.extents.y + 0.01f);
+        return Physics.Raycast(_player.transform.position, -Vector3.up, _playerCollider.bounds.extents.y + 0.01f);
     }
 
     void Move()
     {
-        Vector3 playerVelocity = new Vector3(inputMovement.x * speed, playerRigidbody.velocity.y, inputMovement.y * speed);
-        playerRigidbody.velocity = transform.TransformDirection(playerVelocity);
+        Vector3 playerVelocity = new Vector3(_inputMovement.x * _speed, _playerRigidbody.velocity.y, _inputMovement.y * _speed);
+        _playerRigidbody.velocity = _player.transform.TransformDirection(playerVelocity);
     }
 
     public void OnMove(InputValue value)
     {
-        inputMovement = value.Get<Vector2>();
+        _inputMovement = value.Get<Vector2>();
     }
 
     public void OnJump()
     {
         if (IsGrounded()){
-            playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _playerRigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
     }
 
@@ -55,11 +58,23 @@ public class PlayerInputsManager : MonoBehaviour
     {
         bool cast = value.Get<float>() == 1;
         if (cast){
-            magicCaster.Cast();
-            magicCaster.WantToCast(true);
+            _magicCaster.Cast();
+            _magicCaster.WantToCast(true);
         }else{
-            magicCaster.UnCast();
-            magicCaster.WantToCast(false);
+            _magicCaster.UnCast();
+            _magicCaster.WantToCast(false);
         }
+    }
+
+    public void OnOpenInventory() {
+        print("Opening Inventory");
+        _uIManager.SwitchUI();
+        _playerInput.SwitchCurrentActionMap("Inventory");
+    }
+
+    public void OnCloseInventory() {
+        print("Closing Inventory");
+        _uIManager.SwitchUI();
+        _playerInput.SwitchCurrentActionMap("Ground");
     }
 }

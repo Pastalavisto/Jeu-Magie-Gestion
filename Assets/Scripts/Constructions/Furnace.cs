@@ -20,13 +20,13 @@ public class Furnace : MagicReceiver
         {
             return;
         }
-        _mana.AddMana(magic.GetManaCost());
+        _mana.AddMana(magic.GetPower());
         if (_mana.GetMana() >= _mana.GetMaxMana())
         {
             _mana.ResetMana();
             Instantiate(_itemPrefab, transform.position, Quaternion.identity);
         }
-        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with mana " + magic.GetManaCost() + " and mana number " + _mana.GetMana() + " and mana max " + _mana.GetMaxMana() + "");
+        Debug.Log("Trigger Magic of type " + magic.GetMagicType() + " with power of " + magic.GetPower() + " Current mana number " + _mana.GetMana() + " of " + _mana.GetMaxMana() + " max mana");
         _manaBar.SetActive(true);
         _manaBarScript.UpdateManaBar(_mana.GetMana() / _mana.GetMaxMana() * 100);
         _manaBarScript.ResetManaBarTimer();

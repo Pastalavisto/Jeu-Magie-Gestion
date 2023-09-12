@@ -5,22 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    [SerializeField]
-    private Camera thirdPersonCamera;
-    [SerializeField]
-    private Camera firstPersonCamera;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private Camera _thirdPersonCamera;
+    [SerializeField] private Camera _firstPersonCamera;
     private Camera currentCamera;
-    // Start is called before the first frame update
+
     void Start()
     {
-        currentCamera = thirdPersonCamera;
+        currentCamera = _thirdPersonCamera;
         OnCameraSwitch();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnLook(InputValue value)
@@ -28,8 +21,8 @@ public class PlayerCameraController : MonoBehaviour
         Vector2 mouseDelta = value.Get<Vector2>();
         if (mouseDelta != Vector2.zero)
         {
-            transform.Rotate(Vector3.up, mouseDelta.x * 0.2f, Space.World);
-            if (currentCamera == firstPersonCamera)
+            _player.transform.Rotate(Vector3.up, mouseDelta.x * 0.2f, Space.World);
+            if (currentCamera == _firstPersonCamera)
             {
             float verticalRotation = -mouseDelta.y * 0.2f;
             float currentAngle = currentCamera.transform.eulerAngles.x;
@@ -47,14 +40,14 @@ public class PlayerCameraController : MonoBehaviour
     }
 
     public void OnCameraSwitch(){
-        if(currentCamera == thirdPersonCamera){
-            thirdPersonCamera.enabled = false;
-            firstPersonCamera.enabled = true;
-            currentCamera = firstPersonCamera;
+        if(currentCamera == _thirdPersonCamera){
+            _thirdPersonCamera.enabled = false;
+            _firstPersonCamera.enabled = true;
+            currentCamera = _firstPersonCamera;
         }else{
-            thirdPersonCamera.enabled = true;
-            firstPersonCamera.enabled = false;
-            currentCamera = thirdPersonCamera;
+            _thirdPersonCamera.enabled = true;
+            _firstPersonCamera.enabled = false;
+            currentCamera = _thirdPersonCamera;
         }
     }
 }
